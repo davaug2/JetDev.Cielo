@@ -65,6 +65,7 @@ NUGET: https://www.nuget.org/packages/JetDev.Cielo
     var requisicao = new JetDev.Cielo.Requisicoes.RequisicaoTransacao();
     requisicao.UrlRetorno = string.Format("http://suapagina.com.br/retorno?CodigoVenda={0}", codigoVenda);
     requisicao.Autorizacao = TipoAutorizacao.Autorizar_autenticada_e_nao_autenticada;
+    requisicao.Portador = new PortadorToken("AQUI VAI O TOKEN GERADO ACIMA");
     requisicao.Pedido = new Pedido();
     requisicao.Pedido.Descricao = "Descrição do pedido";
     requisicao.Pedido.DescricaoExtra = "MINHA_EMPRESA"; // Descrição que aparece na fatura
