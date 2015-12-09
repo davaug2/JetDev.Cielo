@@ -26,7 +26,22 @@ namespace JetDev.Cielo
             Config.CallLogAction(null, resposta.XMLRequisicao, resposta.XMLResposta);
             return resposta != null && resposta.Token != null ? resposta.Token.Dados : null;
         }
+        public static Respostas.RespostaTransacao AutorizarPagamento(Requisicoes.RequisicaoTransacaoCartao transacao)
+        {
+            return AutorizarPagamento(transacao, Config.Ambiente);
+        }
+        public static Respostas.RespostaTransacao AutorizarPagamento(Requisicoes.RequisicaoTransacaoCartao transacao, JetDev.Cielo.Entidades.Ambiente ambiente)
+        {
+            if (!transacao.FormaPagamento.Validar())
+                throw new Exception("Requisição inválida");
+            if (transacao.EC == null)
+                transacao.EC = ObterECData(ambiente);
+            var resposta = Utils.Requisitar<Respostas.RespostaTransacao, Requisicoes.RequisicaoTransacaoCartao>(transacao, ambiente);
 
+            Config.CallLogAction(resposta.TransacaoId, resposta.XMLRequisicao, resposta.XMLResposta);
+
+            return resposta;
+        }
         public static Respostas.RespostaTransacao AutorizarPagamento(Requisicoes.RequisicaoTransacao transacao)
         {
             return AutorizarPagamento(transacao, Config.Ambiente);
@@ -119,7 +134,7 @@ namespace JetDev.Cielo
         }
         public static Respostas.RespostaTransacao ObterSituacao(Requisicoes.RequisicaoConsulta consulta, JetDev.Cielo.Entidades.Ambiente ambiente)
         {
-            if (string.IsNullOrEmpty(consulta.transacaoId))
+            if (string.IsNullOrEmpty(consulta.TransacaoId))
                 throw new Exception("ID da transação é obrigatório");
             if (consulta.EC == null)
                 consulta.EC = ObterECData(ambiente);

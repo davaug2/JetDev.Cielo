@@ -55,5 +55,8 @@ namespace JetDev.Cielo.Respostas
         [XmlArray("cancelamentos")]
         [XmlArrayItem("cancelamento", typeof(Cancelamento), IsNullable = false)]
         public List<Cancelamento> Cancelamentos { get; set; }
+
+        [XmlElement("token")]
+        public Token Token { get; set; }
     }
 }

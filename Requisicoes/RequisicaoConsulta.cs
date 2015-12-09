@@ -16,7 +16,7 @@ namespace JetDev.Cielo.Requisicoes
         }
         public RequisicaoConsulta(string transacaoId) : this()
         {
-            transacaoId = transacaoId;
+            TransacaoId = transacaoId;
         }
 
         [XmlAttribute("id")]
@@ -24,7 +24,7 @@ namespace JetDev.Cielo.Requisicoes
         [XmlAttribute("versao")]
         public string Versao { get; set; }
         [XmlElement("tid")]
-        public string transacaoId { get; set; }
+        public string TransacaoId { get; set; }
         [XmlElement("dados-ec")]
         public ECData EC { get; set; }
     }
