@@ -37,7 +37,7 @@ namespace JetDev.Cielo.Requisicoes
         [XmlElement("capturar")]
         public bool Capturar { get; set; }
 
-        //[XmlElement("capturar")]
+        //[XmlElement("capturar")] 
         //public string CapturarString { get { return Capturar ? "1" : "0"; } set { Capturar = value == "1"; } }
     }
 }
