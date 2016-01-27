@@ -11,10 +11,12 @@ namespace JetDev.Cielo
         private static Entidades.Ambiente ambiente = Entidades.Ambiente.TesteCieloIntegrado;
         private static string URLteste = "https://qasecommerce.cielo.com.br/servicos/ecommwsec.do";
         private static string URLproducao = "https://ecommerce.cielo.com.br/servicos/ecommwsec.do";
+        private static string URLproducaoCieloCheckout = "https://cieloecommerce.cielo.com.br/api/public/v1/orders";
 
         public static Entidades.Ambiente Ambiente { get { return ambiente; } set { ambiente = value; } }
         public static string URLTeste { get { return URLteste; } set { URLteste = value; } }
         public static string URLProducao { get { return URLproducao; } set { URLproducao = value; } }
+        public static string URLProducaoCieloCheckout { get { return URLproducaoCieloCheckout; } set { URLproducaoCieloCheckout = value; } }
         public static string NumeroEstabelecimento { get; set; }
         public static string ChaveEstabelecimento { get; set; }
 

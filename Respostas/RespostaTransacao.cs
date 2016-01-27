@@ -1,4 +1,5 @@
 ﻿using JetDev.Cielo.Entidades;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Text;

@@ -1,5 +1,6 @@
 ﻿using JetDev.Cielo.Entidades;
 using JetDev.Cielo.Requisicoes;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -34,7 +35,7 @@ namespace JetDev.Cielo
         {
             if (!transacao.FormaPagamento.Validar())
                 throw new Exception("Requisição inválida");
-            if (transacao.EC == null)
+            if (transacao.EC == null || ambiente != Ambiente.Producao)
                 transacao.EC = ObterECData(ambiente);
             var resposta = Utils.Requisitar<Respostas.RespostaTransacao, Requisicoes.RequisicaoTransacaoCartao>(transacao, ambiente);
 
@@ -50,7 +51,7 @@ namespace JetDev.Cielo
         {
             if (!transacao.FormaPagamento.Validar())
                 throw new Exception("Requisição inválida");
-            if (transacao.EC == null)
+            if (transacao.EC == null || ambiente != Ambiente.Producao)
                 transacao.EC = ObterECData(ambiente);
             var resposta = Utils.Requisitar<Respostas.RespostaTransacao, Requisicoes.RequisicaoTransacao>(transacao, ambiente);
 
@@ -113,13 +114,21 @@ namespace JetDev.Cielo
         {
             if (!transacao.FormaPagamento.Validar())
                 throw new Exception("Requisição inválida");
-            if (transacao.EC == null)
+            if (transacao.EC == null || ambiente != Ambiente.Producao)
                 transacao.EC = ObterECData(ambiente);
 
             var resposta = Utils.Requisitar<Respostas.RespostaTransacaoSimples, Requisicoes.RequisicaoTransacao>(transacao, ambiente);
             Config.CallLogAction(resposta.TransacaoId, resposta.XMLRequisicao, resposta.XMLResposta);
             return resposta;
         }
+        public static Respostas.RespostaTransacaoCheckout ObterUrlAutenticacao(Requisicoes.RequisicaoTransacaoCheckout transacao)
+        {
+            var resposta = Utils.Requisitar<Respostas.RespostaTransacaoCheckout, Requisicoes.RequisicaoTransacaoCheckout>(transacao, Ambiente.ProducaoCieloCheckout);
+            Config.CallLogAction(transacao.NumeroPedido, resposta.XMLRequisicao, resposta.XMLResposta);
+            return resposta;
+        }
+
+
         public static Respostas.RespostaTransacao ObterSituacao(string transacaoId)
         {
             return ObterSituacao(new Requisicoes.RequisicaoConsulta(transacaoId), Config.Ambiente);
@@ -163,6 +172,28 @@ namespace JetDev.Cielo
                 numero = "1006993069";
             }
             return new ECData() { Key = chave, Number = numero };
+        }
+
+
+        public static Entidades.Checkout.AtualizacaoStatus ObterAtualizacaoStatus(System.Web.HttpRequest request)
+        {
+            var json = JsonConvert.SerializeObject(request.Form);
+            return ObterAtualizacaoStatus(json);
+        }
+        public static Entidades.Checkout.AtualizacaoStatus ObterAtualizacaoStatus(string json)
+        {
+            return JsonConvert.DeserializeObject<Entidades.Checkout.AtualizacaoStatus>(json);
+        }
+
+        public static Entidades.Checkout.NotificacaoTransacao ObterNotificacaoTranscacao(System.Web.HttpRequest request)
+        {
+            var json = JsonConvert.SerializeObject(request.Form);
+            return ObterNotificacaoTranscacao(json);
+        }
+
+        public static Entidades.Checkout.NotificacaoTransacao ObterNotificacaoTranscacao(string json)
+        {
+            return JsonConvert.DeserializeObject<Entidades.Checkout.NotificacaoTransacao>(json);
         }
     }
 }
