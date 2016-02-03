@@ -1,6 +1,7 @@
 ﻿using JetDev.Cielo.Entidades;
 using JetDev.Cielo.Requisicoes;
 using JetDev.Cielo.Respostas;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -24,6 +25,43 @@ namespace JetDev.Cielo
         }
 
         internal static Tresposta Requisitar<Tresposta, TRequest>(TRequest request, JetDev.Cielo.Entidades.Ambiente enviroment)
+            where Tresposta : RespostaBase
+            where TRequest : RequisicaoBase
+        {
+            if (enviroment == Ambiente.ProducaoCieloCheckout)
+                return RequisitarJSON<Tresposta, TRequest>(request, enviroment);
+            else
+                return RequisitarXML<Tresposta, TRequest>(request, enviroment);
+        }
+        internal static TResposta RequisitarJSON<TResposta, TRequest>(TRequest request, JetDev.Cielo.Entidades.Ambiente enviroment)
+            where TResposta : RespostaBase
+            where TRequest : RequisicaoBase
+        {
+            var encoding = Encoding.GetEncoding(encodingDefault);
+            request.XMLRequisicao = JsonConvert.SerializeObject(request, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
+            var postDataByte = encoding.GetBytes(request.XMLRequisicao);
+
+            var wr = WebRequest.Create(Config.URLProducaoCieloCheckout);
+            wr.Method = "POST";
+            wr.Headers.Add("MerchantID", Config.ChaveEstabelecimento);
+            wr.ContentType = "text/json";
+            wr.ContentLength = postDataByte.Length;
+            var stream = wr.GetRequestStream();
+            stream.Write(postDataByte, 0, postDataByte.Length);
+            stream.Flush();
+            stream.Close();
+
+            StreamReader sr = new StreamReader(wr.GetResponse().GetResponseStream(), encoding);
+            var jsonResposta = sr.ReadToEnd();
+            request.XMLResposta = jsonResposta;
+            var resposta = JsonConvert.DeserializeObject<RespostaTransacaoCheckout>(jsonResposta);
+
+            resposta.XMLRequisicao = request.XMLRequisicao;
+            resposta.XMLResposta = request.XMLResposta;
+
+            return (TResposta)(object)resposta;
+        }
+        internal static Tresposta RequisitarXML<Tresposta, TRequest>(TRequest request, JetDev.Cielo.Entidades.Ambiente enviroment)
             where Tresposta : RespostaBase
             where TRequest : RequisicaoBase
         {
@@ -78,7 +116,7 @@ namespace JetDev.Cielo
             using (var writer = new XmlTextWriter(sw))
             {
                 var ser = new XmlSerializer(typeof(T), @namespace);
-                writer.Formatting = Formatting.Indented;
+                writer.Formatting = System.Xml.Formatting.Indented;
                 ser.Serialize(writer, obj);
                 ser = null;
                 return encoding.GetString(ms.ToArray());
