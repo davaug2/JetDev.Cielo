@@ -103,3 +103,10 @@ NUGET: https://www.nuget.org/packages/JetDev.Cielo
         // Ok o dinheiro vai chegar
     }
 
+
+#Uso de cartão de débito
+Os bancos que aceitam Visa Electron são: Banco Bradesco, Banco do Brasil, Santander, HSBC, Itaú, Mercantil, Sicredi, Banco de     Brasília, Banco da Amazônia, Banco Espírito Santo e Banco do Nordeste. 
+
+Para Maestro os bancos são: Banco do Brasil, Banco Santander, Banco de Brasília e Bancoob.
+    
+Informações compartilhadas por @ivanteles.
