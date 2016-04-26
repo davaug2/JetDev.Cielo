@@ -50,6 +50,7 @@
     <Compile Include="Entidades\Autorizacao.cs" />
     <Compile Include="Entidades\Captura.cs" />
     <Compile Include="Entidades\Cancelamento.cs" />
+    <Compile Include="Entidades\Checkout\Carrinho.cs" />
     <Compile Include="Entidades\PortadorCartao.cs" />
     <Compile Include="Entidades\PortadorToken.cs" />
     <Compile Include="Entidades\RequisitarToken.cs" />
@@ -67,11 +68,13 @@
     <Compile Include="Requisicoes\RequisicaoToken.cs" />
     <Compile Include="Requisicoes\RequisicaoConsulta.cs" />
     <Compile Include="Requisicoes\RequisicaoBase.cs" />
+    <Compile Include="Requisicoes\RequisicaoTransacaoCheckout.cs" />
     <Compile Include="Requisicoes\RequisicaoTransacao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requisicoes\RequisicaoTransacaoCartao.cs" />
     <Compile Include="Respostas\RespostaBase.cs" />
     <Compile Include="Respostas\RespostaToken.cs" />
+    <Compile Include="Respostas\RespostaTransacaoCheckout.cs" />
     <Compile Include="Respostas\RespostaTransacaoSimples.cs" />
     <Compile Include="Respostas\RespostaTransacao.cs" />
     <Compile Include="Utils.cs" />

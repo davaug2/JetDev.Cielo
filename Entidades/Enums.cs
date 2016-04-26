@@ -6,9 +6,9 @@ namespace JetDev.Cielo.Entidades
 {
     public enum Ambiente
     {
-        TesteCieloCheckout,
         TesteWebService,
         Producao,
+        ProducaoCieloCheckout,
         TesteCieloIntegrado
     }
     public enum Bandeiras
@@ -52,10 +52,44 @@ namespace JetDev.Cielo.Entidades
         EmCancelamento  = 12
     }
 
+    public enum SituacaoPagamentoCheckout
+    {
+        Pendente = 1,
+        Pago = 2,
+        Negado = 3,
+        Cancelado = 5,
+        NaoFinalizado = 6,
+        Autorizado = 7
+    }
 
     public enum SituacaoToken
     {
         Bloqueado = 0,
         Desbloqueado = 1
     }
+
+    public enum TipoDesconto
+    {
+        Valor, Percentual
+    }
+
+    public enum TipoItem
+    {
+        MaterialFisico,
+        ProdutosDigitais,
+        Servicos,
+        OutrosPagamentos
+    }
+
+    public enum TipoFrete
+    {
+        Correios,
+        ValorFixo,
+        Gratis,
+        RetiradaLoja,
+        SemFrete
+    }
+
+
+
 }
