@@ -37,10 +37,19 @@ namespace JetDev.Cielo
             where TResposta : RespostaBase
             where TRequest : RequisicaoBase
         {
-            var encoding = Encoding.GetEncoding(encodingDefault);
+            var encoding = System.Text.Encoding.UTF8;// Encoding.GetEncoding(encodingDefault);
             request.XMLRequisicao = JsonConvert.SerializeObject(request, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
             var postDataByte = encoding.GetBytes(request.XMLRequisicao);
-
+            /*
+            using (var wc = new WebClient())
+            {
+                wc.Headers.Add("MerchantID", Config.ChaveEstabelecimento);
+                wc.Headers.Add("Content-Type", "text/json");
+                var responseService = wc.UploadData(Config.URLProducaoCieloCheckout, "GET", postDataByte);
+                request.XMLResposta = encoding.GetString(responseService);
+            }
+            */
+            
             var wr = WebRequest.Create(Config.URLProducaoCieloCheckout);
             wr.Method = "POST";
             wr.Headers.Add("MerchantID", Config.ChaveEstabelecimento);
@@ -54,7 +63,9 @@ namespace JetDev.Cielo
             StreamReader sr = new StreamReader(wr.GetResponse().GetResponseStream(), encoding);
             var jsonResposta = sr.ReadToEnd();
             request.XMLResposta = jsonResposta;
-            var resposta = JsonConvert.DeserializeObject<RespostaTransacaoCheckout>(jsonResposta);
+
+
+            var resposta = JsonConvert.DeserializeObject<RespostaTransacaoCheckout>(request.XMLResposta);
 
             resposta.XMLRequisicao = request.XMLRequisicao;
             resposta.XMLResposta = request.XMLResposta;

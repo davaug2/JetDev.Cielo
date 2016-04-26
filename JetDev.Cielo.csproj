@@ -63,11 +63,6 @@
     <Compile Include="Entidades\Pedido.cs" />
     <Compile Include="Entidades\FormaPagamento.cs" />
     <Compile Include="PaymentException.cs" />
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
     <Compile Include="Requisicoes\RequisicaoCancelamento.cs" />
     <Compile Include="Requisicoes\RequisicaoCaptura.cs" />
     <Compile Include="Requisicoes\RequisicaoToken.cs" />
@@ -86,10 +81,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

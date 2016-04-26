@@ -15,10 +15,10 @@ using System.Resources;
 
 [assembly: Guid("72097d19-4480-4f6c-82f6-a26e812359a3")]
 
-[assembly: AssemblyVersion("1.0.5")]
-[assembly: AssemblyFileVersion("1.0.5")]
+[assembly: AssemblyVersion("2.0.2")]
+[assembly: AssemblyFileVersion("2.0.2")]
 [assembly: NeutralResourcesLanguageAttribute("")]
 
-[assembly: AssemblyInformationalVersion("1.0.5")]
+[assembly: AssemblyInformationalVersion("2.0.2")]
 
 
