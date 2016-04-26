@@ -23,7 +23,7 @@ NUGET: https://www.nuget.org/packages/JetDev.Cielo
         requisicao.Autorizacao = TipoAutorizacao.Autorizar_autenticada_e_nao_autenticada;
         requisicao.Pedido = new Pedido();
         requisicao.Pedido.Descricao = "Descrição do pedido";
-        requisicao.Pedido.DescricaoExtra = "MINHA_EMPRESA"; // Descrição que aparece na fatura
+        requisicao.Pedido.DescricaoExtra = "PRODUTO"; // Descrição que aparece na fatura - MAXIMO 8 CARACTÉRES
         requisicao.Pedido.Valor = 100.00M;
         requisicao.Pedido.Numero = codigoVenda.ToString();
         requisicao.FormaPagamento = new FormaPagamento()
@@ -103,3 +103,10 @@ NUGET: https://www.nuget.org/packages/JetDev.Cielo
         // Ok o dinheiro vai chegar
     }
 
+
+#Uso de cartão de débito
+Os bancos que aceitam Visa Electron são: Banco Bradesco, Banco do Brasil, Santander, HSBC, Itaú, Mercantil, Sicredi, Banco de     Brasília, Banco da Amazônia, Banco Espírito Santo e Banco do Nordeste. 
+
+Para Maestro os bancos são: Banco do Brasil, Banco Santander, Banco de Brasília e Bancoob.
+    
+Informações compartilhadas por @ivanteles.
