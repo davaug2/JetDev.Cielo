@@ -1,13 +1,6 @@
 ﻿using JetDev.Cielo.Entidades;
 using JetDev.Cielo.Requisicoes;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Net;
-using System.Text;
-using System.Web;
-using System.Xml;
-using System.Xml.Serialization;
 
 namespace JetDev.Cielo
 {
@@ -78,8 +71,6 @@ namespace JetDev.Cielo
                 if (value.Value <= 0)
                     throw new Exception("Valor não disponível para esta transação");
             }
-
-
 
             var taken = new RequisicaoCaptura(transacaoId, ObterECData());
             var resposta = Utils.Requisitar<Respostas.RespostaTransacao, Requisicoes.RequisicaoCaptura>(taken);
