@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <title>JetDev.Cielo</title>
+    <id>JetDev.Cielo</id>
+    <version>2.0.2</version>
+    <authors>David A. Silva</authors>
+    <description>Helper para integração com a CIELO. </description>
+    <summary>Integração preve Solicitação de URL para pagamento (BuyPage Cielo), Solicitação para pagamento local (BuyPage Loja), Cancelamento de Lançamentos, Captura manual de transações, Consulta de situação de transações, Geração de token para transações recorrentes - Compatível com .Net Framework 2.0 ou superior.</summary>
+    <language>pt-BR</language>
+	<tags>cielo pagamento jetdev payment</tags>
+	<projectUrl>https://github.com/jetdev/JetDev.Cielo/</projectUrl>
+	<iconUrl>https://www.cielo.com.br/wps/contenthandler/!ut/p/digest!k1cPLuorxB6e2iAfEteKNA/war/cielo-tema/themes/estatico/images/logo.png</iconUrl>
+	<dependencies>
+		<dependency id="Newtonsoft.Json" version="6.0.1" />
+	</dependencies>
+  </metadata>
+  <files>
+    <file src="bin\Release\JetDev.Cielo.dll" target="lib\net20" />
+  </files>
+</package>

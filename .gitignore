@@ -2,7 +2,7 @@
 *.user
 bin/
 obj/
-*.nuspec
-*.nupkg
+#*.nuspec
+#*.nupkg
 *.exe
 packages/
