@@ -4,6 +4,7 @@ using JetDev.Cielo.Respostas;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Net;
 using System.Text;
@@ -168,9 +169,23 @@ namespace JetDev.Cielo
             if (dataValue.Length == 2 && dataValue[1].Length == 2)
                 return dataValue[0] + dataValue[1];
             if (dataValue.Length == 2 && dataValue[1].Length > 2)
-                return dataValue[0] + dataValue[1] + dataValue[1].Substring(0, 2);
+                return dataValue[0] + dataValue[1].Substring(0, 2);
             else
                 return "0";
+        }        
+
+        public static DateTime ConverteDataDeCielo(string data)
+        {
+            var cultura = CultureInfo.GetCultureInfo("en-US");
+            DateTime datetimeCast;
+            if (DateTime.TryParse(data, cultura, DateTimeStyles.None, out datetimeCast))
+                return datetimeCast;
+            return DateTime.MinValue;
+        }
+
+        public static string ConverteDataParaCielo(DateTime value)
+        {
+            return value.ToString("yyyy-MM-ddTHH:mm:ss");
         }
     }
 }

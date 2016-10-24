@@ -21,6 +21,8 @@ namespace JetDev.Cielo.Entidades
         }
         [XmlElement("arp")]
         public string ARP { get; set; }
+        [XmlElement("lr")]
+        public string LR { get; set; }
         [XmlElement("nsu")]
         public string NSU { get; set; }
         [XmlIgnore]

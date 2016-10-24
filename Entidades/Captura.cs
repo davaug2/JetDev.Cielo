@@ -11,8 +11,8 @@ namespace JetDev.Cielo.Entidades
         public string Codigo { get; set; }
         [XmlElement("mensagem")]
         public string Mensagem { get; set; }
-        [XmlElement("dataHora")]
-        public string DataHora { get; set; }
+        [XmlIgnore]
+        public DateTime DataHora { get; set; }
         [XmlIgnore]
         public decimal Valor { get; set; }
         [XmlElement("valor")]
@@ -20,6 +20,14 @@ namespace JetDev.Cielo.Entidades
         {
             get { return Utils.ConverteValorParaCielo(Valor); }
             set { Valor = Utils.ConverteValorDeCielo(value); }
+        }
+
+
+        [XmlElement("data-hora")]
+        public string DataHoraString
+        {
+            get { return Utils.ConverteDataParaCielo(DataHora); }
+            set { DataHora = Utils.ConverteDataDeCielo(value); }
         }
     }
 }
