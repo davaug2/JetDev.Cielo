@@ -3,7 +3,7 @@
   <metadata>
     <title>JetDev.Cielo</title>
     <id>JetDev.Cielo</id>
-    <version>2.0.2</version>
+    <version>2.0.3</version> 
     <authors>David A. Silva</authors>
     <description>Helper para integração com a CIELO. </description>
     <summary>Integração preve Solicitação de URL para pagamento (BuyPage Cielo), Solicitação para pagamento local (BuyPage Loja), Cancelamento de Lançamentos, Captura manual de transações, Consulta de situação de transações, Geração de token para transações recorrentes - Compatível com .Net Framework 2.0 ou superior.</summary>

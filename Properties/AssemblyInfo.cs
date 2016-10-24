@@ -8,17 +8,17 @@ using System.Resources;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("JetDev Tecnologia")]
 [assembly: AssemblyProduct("JetDev.Cielo")]
-[assembly: AssemblyCopyright("Copyright ©  2015")]
+[assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 
 [assembly: ComVisible(false)]
 
 [assembly: Guid("72097d19-4480-4f6c-82f6-a26e812359a3")]
 
-[assembly: AssemblyVersion("2.0.2")]
-[assembly: AssemblyFileVersion("2.0.2")]
+[assembly: AssemblyVersion("2.0.3")]
+[assembly: AssemblyFileVersion("2.0.3")]
 [assembly: NeutralResourcesLanguageAttribute("")]
-[assembly: AssemblyInformationalVersion("2.0.2")]
+[assembly: AssemblyInformationalVersion("2.0.3")]
 
 
 
