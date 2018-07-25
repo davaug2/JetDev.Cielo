@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Net;
+using System.Security.Authentication;
 using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
@@ -15,6 +16,9 @@ namespace JetDev.Cielo
 {
     public static class Utils
     {
+        public const SslProtocols _Tls12 = (SslProtocols)0x00000C00;
+        public const SecurityProtocolType Tls12 = (SecurityProtocolType)_Tls12;
+
         private const string @namespace = "http://ecommerce.cbmp.com.br";
         private const string encodingDefault = "ISO-8859-1";
 
@@ -50,7 +54,7 @@ namespace JetDev.Cielo
                 request.XMLResposta = encoding.GetString(responseService);
             }
             */
-            
+
             var wr = WebRequest.Create(Config.URLProducaoCieloCheckout);
             wr.Method = "POST";
             wr.Headers.Add("MerchantID", Config.ChaveEstabelecimento);
@@ -77,6 +81,7 @@ namespace JetDev.Cielo
             where Tresposta : RespostaBase
             where TRequest : RequisicaoBase
         {
+            ServicePointManager.SecurityProtocol = Tls12;
             var encoding = Encoding.GetEncoding(encodingDefault);
             var xmlRequest = ParaXML<TRequest>(request);
             var postData = string.Format("mensagem={0}", xmlRequest);
@@ -172,7 +177,7 @@ namespace JetDev.Cielo
                 return dataValue[0] + dataValue[1].Substring(0, 2);
             else
                 return "0";
-        }        
+        }
 
         public static DateTime ConverteDataDeCielo(string data)
         {
